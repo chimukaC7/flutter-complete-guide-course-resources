@@ -14,6 +14,7 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
+
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
@@ -28,6 +29,7 @@ class _NewExpenseState extends State<NewExpense> {
       firstDate: firstDate,
       lastDate: now,
     );
+    
     setState(() {
       _selectedDate = pickedDate;
     });
@@ -70,6 +72,7 @@ class _NewExpenseState extends State<NewExpense> {
     Navigator.pop(context);
   }
 
+	//when the modal is closed
   @override
   void dispose() {
     _titleController.dispose();
@@ -84,8 +87,9 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
-            controller: _titleController,
+            controller: _titleController,//receives entered value
             maxLength: 50,
+						keyboardType: TextInputType.name,//default, which virtual keyboard should be opened
             decoration: const InputDecoration(
               label: Text('Title'),
             ),

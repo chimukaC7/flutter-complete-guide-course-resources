@@ -24,8 +24,8 @@ class ExpenseItem extends StatelessWidget {
             Row(
               children: [
                 Text('\$${expense.amount.toStringAsFixed(2)}',),
-                const Spacer(),
-                Row(
+                const Spacer(),//gives space btn widgets
+                Row(//in the same row, another row to group other widgets
                   children: [
                     Icon(categoryIcons[expense.category]),
                     const SizedBox(width: 8),
