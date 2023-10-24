@@ -6,6 +6,9 @@ final formatter = DateFormat.yMd();
 
 const uuid = Uuid();
 
+//enums
+//a fixed set of allowed values
+//predefined values
 enum Category { food, travel, leisure, work }
 
 const categoryIcons = {
@@ -15,19 +18,28 @@ const categoryIcons = {
   Category.work: Icons.work,
 };
 
+
+//servers as a data structure
 class Expense {
+
+//variables
+  final String id;
+  final String title;
+  final double amount;
+  final DateTime date;
+  // final String category;
+  final Category category;
+
+    //constructor
   Expense({
     required this.title,
     required this.amount,
     required this.date,
     required this.category,
   }) : id = uuid.v4();
-
-  final String id;
-  final String title;
-  final double amount;
-  final DateTime date;
-  final Category category;
+  //initializer lists can be used to initialize class properties like id
+  //with values that are not received as constructor function arguments
+  //in the example we target the id
 
   String get formattedDate {
     return formatter.format(date);

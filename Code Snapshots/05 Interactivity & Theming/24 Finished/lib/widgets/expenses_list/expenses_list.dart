@@ -4,14 +4,16 @@ import 'package:expense_tracker/widgets/expenses_list/expense_item.dart';
 import 'package:expense_tracker/models/expense.dart';
 
 class ExpensesList extends StatelessWidget {
+
+  final List<Expense> expenses;
+  final void Function(Expense expense) onRemoveExpense;
+
+    //constructor
   const ExpensesList({
     super.key,
     required this.expenses,
     required this.onRemoveExpense,
   });
-
-  final List<Expense> expenses;
-  final void Function(Expense expense) onRemoveExpense;
 
   @override
   Widget build(BuildContext context) {
