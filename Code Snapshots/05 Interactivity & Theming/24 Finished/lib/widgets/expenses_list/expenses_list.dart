@@ -20,7 +20,7 @@ class ExpensesList extends StatelessWidget {
     return ListView.builder(
       itemCount: expenses.length,
       itemBuilder: (ctx, index) => Dismissible(
-        key: ValueKey(expenses[index]),
+        key: ValueKey(expenses[index]),//to identify the widget and that data associated with it
         background: Container(
           color: Theme.of(context).colorScheme.error.withOpacity(0.75),
           margin: EdgeInsets.symmetric(

@@ -13,6 +13,7 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 );
 
 void main() {
+  //locking the devuce orientation
   // WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,

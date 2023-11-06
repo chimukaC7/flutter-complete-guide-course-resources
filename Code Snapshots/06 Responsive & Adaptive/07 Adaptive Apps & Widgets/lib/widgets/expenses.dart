@@ -111,4 +111,13 @@ class _ExpensesState extends State<Expenses> {
             ]),
     );
   }
+
+  //widgets get sized based on their size preference & parent widget size constrainsts
+  //-column -> height as much as possible & width as much as needed by children
+  //does not pass any constrainst to the child widget
+
+  //scaffold ->height -> max.device height
+//           ->width ->max.device width
+
+//expanded -> takes a much hieght & width available
 }

@@ -47,11 +47,15 @@ class _ExpensesState extends State<Expenses> {
   }
 
   void _removeExpense(Expense expense) {
-    final expenseIndex = _registeredExpenses.indexOf(expense);
+
+    final expenseIndex = _registeredExpenses.indexOf(expense);//where the delete item was
+
     setState(() {
       _registeredExpenses.remove(expense);
     });
+
     ScaffoldMessenger.of(context).clearSnackBars();
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 3),
@@ -60,7 +64,7 @@ class _ExpensesState extends State<Expenses> {
           label: 'Undo',
           onPressed: () {
             setState(() {
-              _registeredExpenses.insert(expenseIndex, expense);
+              _registeredExpenses.insert(expenseIndex, expense);//instead of add, becoc with insert you specify the position of the inserted item
             });
           },
         ),

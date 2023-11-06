@@ -20,9 +20,10 @@ class _NewExpenseState extends State<NewExpense> {
   DateTime? _selectedDate;
   Category _selectedCategory = Category.leisure;
 
-  void _presentDatePicker() async {
+  void _displayDatePicker() async {
     final now = DateTime.now();
-    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    final firstDate = DateTime(now.year - 1, now.month, now.day);//y m d
+
     final pickedDate = await showDatePicker(
       context: context,
       initialDate: now,
@@ -36,31 +37,36 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   void _submitExpenseData() {
-    final enteredAmount = double.tryParse(_amountController
-        .text); // tryParse('Hello') => null, tryParse('1.12') => 1.12
-    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
-    if (_titleController.text.trim().isEmpty ||
-        amountIsInvalid ||
-        _selectedDate == null) {
+	//convert the test to a double
+    final enteredAmount = double.tryParse(_amountController.text); 
+    // tryParse('Hello') => null, tryParse('1.12') => 1.12
+
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;//true or false will be derived
+
+    if (_titleController.text.trim().isEmpty || amountIsInvalid || _selectedDate == null) {
+
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Invalid input'),
           content: const Text(
-              'Please make sure a valid title, amount, date and category was entered.'),
+              'Please ensure a valid title, amount, date and category was entered.'),
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(ctx);
+                Navigator.pop(ctx);//close the dialog
               },
               child: const Text('Okay'),
             ),
           ],
         ),
       );
+
       return;
     }
 
+	//receicing a function defined in another class
+	//for stateful use widget.
     widget.onAddExpense(
       Expense(
         title: _titleController.text,
@@ -115,10 +121,10 @@ class _NewExpenseState extends State<NewExpense> {
                     Text(
                       _selectedDate == null
                           ? 'No date selected'
-                          : formatter.format(_selectedDate!),
+                          : formatter.format(_selectedDate!),//force that the value will not be value
                     ),
                     IconButton(
-                      onPressed: _presentDatePicker,
+                      onPressed: _displayDatePicker,
                       icon: const Icon(
                         Icons.calendar_month,
                       ),

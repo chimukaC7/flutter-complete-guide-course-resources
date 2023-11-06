@@ -16,6 +16,7 @@ void main() {
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
+		//instead of specifying primarycolor,darkPrimarycolour, you can use colour scheme from other colours will be derived
         colorScheme: kDarkColorScheme,
         cardTheme: const CardTheme().copyWith(
           color: kDarkColorScheme.secondaryContainer,
@@ -31,6 +32,7 @@ void main() {
           ),
         ),
       ),
+      //using copyWith() allows you to use default theme but allowing you to overide styles of your choice
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
