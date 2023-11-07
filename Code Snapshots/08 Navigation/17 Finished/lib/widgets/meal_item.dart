@@ -5,14 +5,15 @@ import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:meals/models/meal.dart';
 
 class MealItem extends StatelessWidget {
+	
+  final Meal meal;
+  final void Function(Meal meal) onSelectMeal;
+
   const MealItem({
     super.key,
     required this.meal,
     required this.onSelectMeal,
   });
-
-  final Meal meal;
-  final void Function(Meal meal) onSelectMeal;
 
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MealItemTrait extends StatelessWidget {
-  const MealItemTrait({
+
+
+  final IconData icon;
+  final String label;
+
+const MealItemTrait({
     super.key,
     required this.icon,
     required this.label,
   });
-
-  final IconData icon;
-  final String label;
 
   @override
   Widget build(BuildContext context) {

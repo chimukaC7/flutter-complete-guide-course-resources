@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-
   final Meal meal;
   final void Function(Meal meal) onToggleFavorite;
 
-    const MealDetailsScreen({
+  const MealDetailsScreen({
     super.key,
     required this.meal,
     required this.onToggleFavorite,
