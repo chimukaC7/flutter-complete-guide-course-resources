@@ -11,10 +11,11 @@ enum Filter {
 }
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key, required this.currentFilters});
 
   final Map<Filter, bool> currentFilters;
 
+    const FiltersScreen({super.key, required this.currentFilters});
+	
   @override
   State<FiltersScreen> createState() {
     return _FiltersScreenState();
