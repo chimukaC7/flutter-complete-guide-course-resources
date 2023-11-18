@@ -10,6 +10,8 @@ enum Filter {
 }
 
 class FiltersNotifier extends StateNotifier<Map<Filter, bool>> {
+
+  //initial state
   FiltersNotifier()
       : super({
           Filter.glutenFree: false,

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meals/models/meal.dart';
 
 class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
+
+    //initial state
   FavoriteMealsNotifier() : super([]);
 
   bool toggleMealFavoriteStatus(Meal meal) {
