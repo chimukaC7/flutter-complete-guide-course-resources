@@ -6,6 +6,7 @@ import 'package:favorite_places/widgets/places_list.dart';
 import 'package:favorite_places/providers/user_places.dart';
 
 class PlacesScreen extends ConsumerStatefulWidget {
+
   const PlacesScreen({super.key});
 
   @override

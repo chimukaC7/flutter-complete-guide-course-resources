@@ -16,6 +16,7 @@ class GroceryList extends StatefulWidget {
 }
 
 class _GroceryListState extends State<GroceryList> {
+
   List<GroceryItem> _groceryItems = [];
   late Future<List<GroceryItem>> _loadedItems;
   String? _error;
@@ -26,27 +27,36 @@ class _GroceryListState extends State<GroceryList> {
     _loadedItems = _loadItems();
   }
 
+
   Future<List<GroceryItem>> _loadItems() async {
-    final url = Uri.https(
-        'flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
+
+    final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
 
     final response = await http.get(url);
 
+    //if status is greater than 400, there is a problem
     if (response.statusCode >= 400) {
       throw Exception('Failed to fetch grocery items. Please try again later.');
     }
 
+    //check if we got no data from the backend
+    //this depends on the backend
     if (response.body == 'null') {
       return [];
     }
 
+    //to access the data,we have to decode it
     final Map<String, dynamic> listData = json.decode(response.body);
-    final List<GroceryItem> loadedItems = [];
+    final List<GroceryItem> loadedItems = [];//temp list
+
     for (final item in listData.entries) {
+
+      //looking a category object based on the name
       final category = categories.entries
           .firstWhere(
               (catItem) => catItem.value.title == item.value['category'])
           .value;
+
       loadedItems.add(
         GroceryItem(
           id: item.key,
@@ -56,6 +66,7 @@ class _GroceryListState extends State<GroceryList> {
         ),
       );
     }
+
     return loadedItems;
   }
 
@@ -77,20 +88,23 @@ class _GroceryListState extends State<GroceryList> {
 
   void _removeItem(GroceryItem item) async {
     final index = _groceryItems.indexOf(item);
+
+    //implemented remove from
     setState(() {
       _groceryItems.remove(item);
     });
 
-    final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com',
-        'shopping-list/${item.id}.json');
+    final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com','shopping-list/${item.id}.json');
 
     final response = await http.delete(url);
 
     if (response.statusCode >= 400) {
       // Optional: Show error message
+      //add it back if an error occurred
       setState(() {
         _groceryItems.insert(index, item);
       });
+
     }
   }
 
@@ -106,18 +120,24 @@ class _GroceryListState extends State<GroceryList> {
           ),
         ],
       ),
+      //there's one special widget I want to show you. A widget you don't have to use, but a widget that can help
+      // with loading data through HTTP requests or with working with futures in general.
+      // And keep in mind that of course when sending an HTTP request like here with get,
+      // we are getting such a future as a result.
+      // And that widget would be the FutureBuilder widget, a widget which listens to a future
+      // and automatically updates the UI as the future resolves.
       body: FutureBuilder(
         future: _loadedItems,
         builder: (context, snapshot) {
+
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
+          //not waiting ,now we have a result with data, error or no data
           if (snapshot.hasError) {
             return Center(
-              child: Text(
-                snapshot.error.toString(),
-              ),
+              child: Text(snapshot.error.toString(),),
             );
           }
 

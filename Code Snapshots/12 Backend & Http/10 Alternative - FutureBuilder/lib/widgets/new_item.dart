@@ -24,13 +24,19 @@ class _NewItemState extends State<NewItem> {
   var _isSending = false;
 
   void _saveItem() async {
+
     if (_formKey.currentState!.validate()) {
+
       _formKey.currentState!.save();
+
       setState(() {
         _isSending = true;
       });
-      final url = Uri.https(
-          'flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
+
+      //domain, path
+      final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
+
+      //waiting for the response
       final response = await http.post(
         url,
         headers: {
@@ -43,8 +49,15 @@ class _NewItemState extends State<NewItem> {
             'category': _selectedCategory.title,
           },
         ),
-      );
+      )
+          // .then((value) => {
+          //   //work with that response
+          // })
+          ;
 
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
+      //to access the data we decode it
       final Map<String, dynamic> resData = json.decode(response.body);
 
       if (!context.mounted) {
@@ -52,14 +65,18 @@ class _NewItemState extends State<NewItem> {
       }
 
       Navigator.of(context).pop(
+
         GroceryItem(
           id: resData['name'],
           name: _enteredName,
           quantity: _enteredQuantity,
           category: _selectedCategory,
         ),
+
       );
+
     }
+
   }
 
   @override
@@ -162,6 +179,7 @@ class _NewItemState extends State<NewItem> {
                     child: const Text('Reset'),
                   ),
                   ElevatedButton(
+                    //setting to null disables the button
                     onPressed: _isSending ? null : _saveItem,
                     child: _isSending
                         ? const SizedBox(

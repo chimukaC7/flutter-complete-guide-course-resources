@@ -18,6 +18,7 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 }
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
+
   final _titleController = TextEditingController();
   File? _selectedImage;
   PlaceLocation? _selectedLocation;
@@ -25,6 +26,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   void _savePlace() {
     final enteredTitle = _titleController.text;
 
+    //this part can be handled in validations in form
     if (enteredTitle.isEmpty ||
         _selectedImage == null ||
         _selectedLocation == null) {
@@ -32,10 +34,10 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
     }
 
     ref
-        .read(userPlacesProvider.notifier)
+        .read(userPlacesProvider.notifier)//getting access to a provider
         .addPlace(enteredTitle, _selectedImage!, _selectedLocation!);
 
-    Navigator.of(context).pop();
+    Navigator.of(context).pop();//leaving this screen
   }
 
   @override
@@ -53,6 +55,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
         child: Column(
+          //you can use the form
           children: [
             TextField(
               decoration: const InputDecoration(labelText: 'Title'),
@@ -62,7 +65,7 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            ImageInput(
+            ImageInput(//taking an image
               onPickImage: (image) {
                 _selectedImage = image;
               },

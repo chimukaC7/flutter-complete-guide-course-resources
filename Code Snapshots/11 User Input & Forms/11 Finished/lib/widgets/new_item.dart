@@ -21,7 +21,10 @@ class _NewItemState extends State<NewItem> {
 
   void _saveItem() {
     if (_formKey.currentState!.validate()) {
+
       _formKey.currentState!.save();
+
+      //passing data back to the other screen
       Navigator.of(context).pop(
         GroceryItem(
           id: DateTime.now().toString(),
@@ -30,6 +33,7 @@ class _NewItemState extends State<NewItem> {
           category: _selectedCategory,
         ),
       );
+
     }
   }
 

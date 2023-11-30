@@ -20,6 +20,7 @@ class _GroceryListState extends State<GroceryList> {
       ),
     );
 
+    //when you click the back button
     if (newItem == null) {
       return;
     }
@@ -40,7 +41,7 @@ class _GroceryListState extends State<GroceryList> {
     Widget content = const Center(child: Text('No items added yet.'));
 
     if (_groceryItems.isNotEmpty) {
-      content = ListView.builder(
+      content = ListView.builder(//builds the list in an optimum way
         itemCount: _groceryItems.length,
         itemBuilder: (ctx, index) => Dismissible(
           onDismissed: (direction) {

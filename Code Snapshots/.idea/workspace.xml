@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b5307f1f-9a62-484e-a8ee-ced8edba0c92" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/data/dummy_items.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/models/category.dart" beforeDir="false" afterPath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/models/category.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/models/grocery_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/models/grocery_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/widgets/grocery_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/widgets/grocery_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/widgets/new_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/11 User Input &amp; Forms/11 Finished/lib/widgets/new_item.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\wamp64\bin\php\php7.4.33\php.exe" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2Yq4q72xnn1wilecIaRvTSzSyAu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.laravel-idea.search-composer-json": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/tools",
+    "settings.editor.selected.configurable": "dart.settings",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5307f1f-9a62-484e-a8ee-ced8edba0c92" name="Changes" comment="" />
+      <created>1701239963642</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701239963642</updated>
+      <workItem from="1701239964640" duration="171000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

@@ -4,6 +4,7 @@ import 'package:favorite_places/screens/map.dart';
 import 'package:favorite_places/models/place.dart';
 
 class PlaceDetailScreen extends StatelessWidget {
+
   const PlaceDetailScreen({super.key, required this.place});
 
   final Place place;

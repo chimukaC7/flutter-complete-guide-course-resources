@@ -21,9 +21,22 @@ Future<Database> _getDatabase() async {
   return db;
 }
 
+
+//create such notifier class with riverpod
+// to have a class where you can add methods
+// that allow you to manipulate the state
+// that's managed by a riverpod.
+
+//state notifier is actually a generic class
+// where we should add some annotation
+// that tells riverpod and Dart which kind of data
+// will in the end be managed by our notifier class here.
 class UserPlacesNotifier extends StateNotifier<List<Place>> {
+
+  //constructor function with an initial state
   UserPlacesNotifier() : super(const []);
 
+  //method to
   Future<void> loadPlaces() async {
     final db = await _getDatabase();
     final data = await db.query('user_places');
@@ -45,13 +58,13 @@ class UserPlacesNotifier extends StateNotifier<List<Place>> {
     state = places;
   }
 
+  //you can pass the model
   void addPlace(String title, File image, PlaceLocation location) async {
     final appDir = await syspaths.getApplicationDocumentsDirectory();
     final filename = path.basename(image.path);
     final copiedImage = await image.copy('${appDir.path}/$filename');
 
-    final newPlace =
-        Place(title: title, image: copiedImage, location: location);
+    final newPlace =  Place(title: title, image: copiedImage, location: location);
 
     final db = await _getDatabase();
     db.insert('user_places', {
@@ -67,6 +80,7 @@ class UserPlacesNotifier extends StateNotifier<List<Place>> {
   }
 }
 
+//set up a provider
 final userPlacesProvider =
     StateNotifierProvider<UserPlacesNotifier, List<Place>>(
   (ref) => UserPlacesNotifier(),

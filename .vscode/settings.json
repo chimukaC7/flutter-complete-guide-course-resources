@@ -2,5 +2,7 @@
     "editor.tokenColorCustomizations": {
         "comments": "",
         "textMateRules": []
-    }
+    },
+    "editor.wordWrapColumn": 200,
+    "editor.wordWrap": "on"
 }
