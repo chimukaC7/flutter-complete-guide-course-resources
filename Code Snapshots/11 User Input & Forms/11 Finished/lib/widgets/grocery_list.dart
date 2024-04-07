@@ -14,10 +14,9 @@ class _GroceryListState extends State<GroceryList> {
   final List<GroceryItem> _groceryItems = [];
 
   void _addItem() async {
+    //in a stateful widget, context is available on a global level
     final newItem = await Navigator.of(context).push<GroceryItem>(
-      MaterialPageRoute(
-        builder: (ctx) => const NewItem(),
-      ),
+      MaterialPageRoute(builder: (ctx) => const NewItem(),),
     );
 
     //when you click the back button
