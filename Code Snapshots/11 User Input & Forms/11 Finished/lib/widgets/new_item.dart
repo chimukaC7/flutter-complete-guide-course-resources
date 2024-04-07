@@ -14,7 +14,14 @@ class NewItem extends StatefulWidget {
 }
 
 class _NewItemState extends State<NewItem> {
+
+  //a global key here then also gives us easy access to the underlying widget
+  // to which it is connected.
+  //this will simply give us some extra type checking
+  // and auto completion suggestions.
+  // So we want to add this annotation here.
   final _formKey = GlobalKey<FormState>();
+
   var _enteredName = '';
   var _enteredQuantity = 1;
   var _selectedCategory = categories[Categories.vegetables]!;
@@ -22,10 +29,20 @@ class _NewItemState extends State<NewItem> {
   void _saveItem() {
     if (_formKey.currentState!.validate()) {
 
+      //when calling the save method,
+      // a special function will be triggered
+      // on all these form field widgets inside the form,
+      //The special function that will be triggered is the onSaved function.
       _formKey.currentState!.save();
 
       //passing data back to the other screen
+      //This pops this screen off the stack of screen
+      // and navigates the user back to the previous screen,
+      // just as the back button on the device or in the app bar does.
       Navigator.of(context).pop(
+        //But we can now pass some data to pop here.
+        // The data that has been entered and validated.
+        // And the data that I do want to pass along here is a grocery item.
         GroceryItem(
           id: DateTime.now().toString(),
           name: _enteredName,
@@ -46,7 +63,7 @@ class _NewItemState extends State<NewItem> {
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Form(//useful to display multiple user input elements
-          key: _formKey,
+          key: _formKey,//It'll be a key that we should create as a property .
           child: Column(
             children: [
               TextField(),//This is a widget we can use for displaying an input field where users can type and enter some values.
@@ -71,9 +88,18 @@ class _NewItemState extends State<NewItem> {
                   return null;
                 },
                 onSaved: (value) {
+
+                  //Alternatively, you could also add an extra check,
+                  // and for example, return if value should be null.
+                  //In that case, this code would not execute.
+                  // But this is redundant and not needed here because we already have our validation logic
+                  // where we check if value is null.
                   // if (value == null) {
                   //   return;
                   // }
+
+                  //we must add an exclamation mark
+                  // to make it clear that value will not be null.
                   _enteredName = value!;
                 },
               ), // instead of TextField()
@@ -138,6 +164,13 @@ class _NewItemState extends State<NewItem> {
                           ),
                       ],
                       onChanged: (value) {
+                        //This is required because selectedCategory is used
+                        // to set the currently visible value,
+                        // and of course that should stay in sync
+                        // with what we selected in the dropdown
+                        // and should update whenever we change our selection.
+                        // So that the currently selected value is reflected on the screen.
+                        // That's why setState is needed here.
                         setState(() {
                           _selectedCategory = value!;
                         });
@@ -152,7 +185,11 @@ class _NewItemState extends State<NewItem> {
                 children: [
                   TextButton(
                     onPressed: () {
+                      //We could also create a standalone method here
+                      // or do it in this anonymous function here,
                       _formKey.currentState!.reset();
+                      //these input fields are set back
+                      // to their initial values.
                     },
                     child: const Text('Reset'),
                   ),

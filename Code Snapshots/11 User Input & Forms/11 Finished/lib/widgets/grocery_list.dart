@@ -15,12 +15,23 @@ class _GroceryListState extends State<GroceryList> {
 
   void _addItem() async {
     //in a stateful widget, context is available on a global level
+
+    // we can get access to the data that's being passed back by using async
+    // and then I'll wait and get back the new item like this.
+    // That's what you learned in the navigation course section
+
+    //Push yields a future that holds the data that may be returned by the screen
+    // which you pushed onto your stack of screens.
     final newItem = await Navigator.of(context).push<GroceryItem>(
       MaterialPageRoute(builder: (ctx) => const NewItem(),),
     );
 
+    //it may be null because of course we can also come back from this screen here
+    // by using the device back button or the back button in the app bar.
     //when you click the back button
     if (newItem == null) {
+      //If new item is null, I want to return
+      // and do nothing else in this add item method here,
       return;
     }
 
@@ -46,7 +57,7 @@ class _GroceryListState extends State<GroceryList> {
           onDismissed: (direction) {
             _removeItem(_groceryItems[index]);
           },
-          key: ValueKey(_groceryItems[index].id),
+          key: ValueKey(_groceryItems[index].id),//to uniquely identify every list items, typically when used in a list.
           child: ListTile(
             title: Text(_groceryItems[index].name),
             leading: Container(
