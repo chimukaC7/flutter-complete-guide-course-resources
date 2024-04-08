@@ -27,8 +27,7 @@ class _GroceryListState extends State<GroceryList> {
   }
 
   void _loadItems() async {
-    final url = Uri.https(
-        'flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
+    final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
 
     try {
       final response = await http.get(url);
@@ -46,13 +45,19 @@ class _GroceryListState extends State<GroceryList> {
         return;
       }
 
+      //we wanna convert this JSON data back/ to regular Dart objects to Dart maps
+      // with which we can work,
       final Map<String, dynamic> listData = json.decode(response.body);
       final List<GroceryItem> loadedItems = [];
+
       for (final item in listData.entries) {
-        final category = categories.entries
-            .firstWhere(
-                (catItem) => catItem.value.title == item.value['category'])
-            .value;
+
+        //I now wanna get a full category object again.
+        //And this is of course, not something you have to do every time you are loading data with the HTTP request.
+        // Instead, that's specific to this app here,where I sent only my category title to Firebase
+        // and I now wanna match it to some local in-memory data again.
+        final category = categories.entries.firstWhere((catItem) => catItem.value.title == item.value['category']).value;
+
         loadedItems.add(
           GroceryItem(
             id: item.key,
@@ -62,10 +67,15 @@ class _GroceryListState extends State<GroceryList> {
           ),
         );
       }
+
       setState(() {
+        //to override that list.
+        // And this should be done inside of setState here actually,
+        // to make sure that the build method executes again and the UI is updated.
         _groceryItems = loadedItems;
         _isLoading = false;
       });
+
     } catch (error) {
       setState(() {
         _error = 'Something went wrong! Please try again later.';

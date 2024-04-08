@@ -29,13 +29,16 @@ class _NewItemState extends State<NewItem> {
       setState(() {
         _isSending = true;
       });
+
       final url = Uri.https(
           'flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
-      final response = await http.post(
-        url,
+
+      final response = await http.post(url,
         headers: {
           'Content-Type': 'application/json',
         },
+        //We don't need to send the ID because Firebase will
+        // generate a unique ID for us, which is pretty convenient.
         body: json.encode(
           {
             'name': _enteredName,
@@ -47,6 +50,11 @@ class _NewItemState extends State<NewItem> {
 
       final Map<String, dynamic> resData = json.decode(response.body);
 
+      //If we, for example, navigated away from this widget here in between.
+      // So whilst the HTTP request was on its way,
+      // a context would be referring to a widget that might not be visible anymore.
+      // That's why it's not recommended to use context here like this.
+      // Now, to make sure that we're not referring to an outdated context here.
       if (!context.mounted) {
         return;
       }
@@ -162,7 +170,9 @@ class _NewItemState extends State<NewItem> {
                     child: const Text('Reset'),
                   ),
                   ElevatedButton(
-                    onPressed: _isSending ? null : _saveItem,
+                    onPressed: _isSending
+                        ? null
+                        : _saveItem,
                     child: _isSending
                         ? const SizedBox(
                             height: 16,
