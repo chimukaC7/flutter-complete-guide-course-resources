@@ -29,6 +29,8 @@ class _GroceryListState extends State<GroceryList> {
   void _loadItems() async {
     final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com', 'shopping-list.json');
 
+    //you should consider adding error handling like this with try-catch
+    // in addition to handling error responses.
     try {
       final response = await http.get(url);
 
@@ -100,22 +102,31 @@ class _GroceryListState extends State<GroceryList> {
   }
 
   void _removeItem(GroceryItem item) async {
+
     final index = _groceryItems.indexOf(item);
     setState(() {
+      //deleting locally
       _groceryItems.remove(item);
     });
 
-    final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com',
-        'shopping-list/${item.id}.json');
+    //instead of pointing at the overall shopping list. We wanna point at a specific item in there
+    // because we don't wanna delete the entire shopping list but just one item in the shopping list.
+    final url = Uri.https('flutter-prep-default-rtdb.firebaseio.com', 'shopping-list/${item.id}.json');
 
+    //deleting on the server
     final response = await http.delete(url);
 
+    //un doing the delete in the event that something went wrong
     if (response.statusCode >= 400) {
       // Optional: Show error message
       setState(() {
+        //instead of add, we could use insert to add item at a specific index.
+        //insert is a method built into Dart that can be used on any list
+        // to add an item at a specific index in that list.
         _groceryItems.insert(index, item);
       });
     }
+
   }
 
   @override
