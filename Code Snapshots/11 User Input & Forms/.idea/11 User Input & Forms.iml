@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/01 Starting Setup/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/01 Starting Setup/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/01 Starting Setup/build" />
+      <excludeFolder url="file://$MODULE_DIR$/02 Solution 1 - Adding Models/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/02 Solution 1 - Adding Models/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/02 Solution 1 - Adding Models/build" />
+      <excludeFolder url="file://$MODULE_DIR$/03 Solution 2 - Building the List/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/03 Solution 2 - Building the List/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/03 Solution 2 - Building the List/build" />
+      <excludeFolder url="file://$MODULE_DIR$/04 Adding the New Item Screen/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/04 Adding the New Item Screen/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/04 Adding the New Item Screen/build" />
+      <excludeFolder url="file://$MODULE_DIR$/05 Form &amp; DropdownButton/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/05 Form &amp; DropdownButton/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/05 Form &amp; DropdownButton/build" />
+      <excludeFolder url="file://$MODULE_DIR$/06 Buttons/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/06 Buttons/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/06 Buttons/build" />
+      <excludeFolder url="file://$MODULE_DIR$/07 Validation Logic/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/07 Validation Logic/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/07 Validation Logic/build" />
+      <excludeFolder url="file://$MODULE_DIR$/08 Getting Form Access gia GlobalKey/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/08 Getting Form Access gia GlobalKey/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/08 Getting Form Access gia GlobalKey/build" />
+      <excludeFolder url="file://$MODULE_DIR$/09 Extracting Entered Values/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/09 Extracting Entered Values/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/09 Extracting Entered Values/build" />
+      <excludeFolder url="file://$MODULE_DIR$/10 Passing Data Between Screens/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/10 Passing Data Between Screens/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/10 Passing Data Between Screens/build" />
+      <excludeFolder url="file://$MODULE_DIR$/11 Finished/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/11 Finished/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/11 Finished/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
