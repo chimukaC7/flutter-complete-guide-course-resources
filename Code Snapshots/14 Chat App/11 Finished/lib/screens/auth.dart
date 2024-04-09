@@ -25,7 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
   var _enteredEmail = '';
   var _enteredPassword = '';
   var _enteredUsername = '';
-  File? _selectedImage;
+  File? _selectedImage;//variable, which will be of type file,  and which initially at least will be null,
   var _isAuthenticating = false;
 
   void _submit() async {
@@ -49,10 +49,12 @@ class _AuthScreenState extends State<AuthScreen> {
             email: _enteredEmail, password: _enteredPassword
         );
       } else {
+
         final userCredentials = await _firebase.createUserWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword
         );
 
+        //upload logic
         final storageRef = FirebaseStorage.instance
             .ref()
             .child('user_images')
@@ -70,6 +72,7 @@ class _AuthScreenState extends State<AuthScreen> {
           'image_url': imageUrl,
         });
       }
+
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
         // ...
