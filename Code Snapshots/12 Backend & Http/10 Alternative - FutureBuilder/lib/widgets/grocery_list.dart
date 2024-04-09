@@ -146,6 +146,8 @@ class _GroceryListState extends State<GroceryList> {
       // we are getting such a future as a result.
       // And that widget would be the FutureBuilder widget, a widget which listens to a future
       // and automatically updates the UI as the future resolves.
+
+      //FutureBuilder is a Widget that will help you to execute some asynchronous function and based on that function’s result your UI will update.
       body: FutureBuilder(
         future: _loadedItems,
         builder: (context, snapshot) {
