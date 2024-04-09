@@ -205,3 +205,23 @@ class _GroceryListState extends State<GroceryList> {
     );
   }
 }
+//So it was sent to the backend,
+// but somehow the UI was not updated correctly.
+//If I delete an item, we get an error.
+
+//the reason for all these problems is that now we're loading and displaying our list data
+// through FutureBuilder,
+//this builder function here only executes once when this future is created and executed
+// for the first time
+//Once the future is done, so once it resolved with data,this builder method here will never execute again,
+// even if you call setState
+
+//That's why for this app here where we're loading data that's then actually manipulated
+// from inside the same widget, FutureBuilder might not be ideal.
+//Now you could restructure the code and write it in different ways to still make addItem
+// and removeItem work as before.
+// But for this app, it actually might be preferable to simply not use FutureBuilder.
+
+// if you had a screen or a widget where you only need to load data,
+// show different states based on whether you're done loading or not,
+// and you have no other logic related to the data, FutureBuilder might be ideal.
