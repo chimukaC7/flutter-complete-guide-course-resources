@@ -36,6 +36,14 @@ class _ChatScreenState extends State<ChatScreen> {
         actions: [
           IconButton(
             onPressed: () {
+              //Because since we're then listening
+              // to events being emitted by a Firebase here, in our Main Dart file,
+              // we'll automatically switch back to the off screen as the user gets logged out
+              // because Firebase will indeed emit a new event when the user logs out.
+
+              //It will emit a new event without data because no authentication token will exist anymore
+              // because Firebase will clear that token when you call sign out,
+              // it will erase it from the device and from its memory.
               FirebaseAuth.instance.signOut();
             },
             icon: Icon(
