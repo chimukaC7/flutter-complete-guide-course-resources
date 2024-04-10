@@ -10,6 +10,7 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     final authenticatedUser = FirebaseAuth.instance.currentUser!;
 
+    //we can update the UI whenever a new document is added to this collection.
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('chat')
@@ -19,12 +20,16 @@ class ChatMessages extends StatelessWidget {
           )
           .snapshots(),
       builder: (ctx, chatSnapshots) {
+        // connection state waiting, we know that we're still waiting to receive some data.
         if (chatSnapshots.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
 
+        //check if chat snapshots has data is false by adding an exclamation market
+        // at the beginning or if chat snapshots data,
+        // if we have data, if that is actually an empty list.
         if (!chatSnapshots.hasData || chatSnapshots.data!.docs.isEmpty) {
           return const Center(
             child: Text('No messages found.'),

@@ -55,6 +55,8 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: const [
+          //I'll wrap chat messages with expanded
+          //to make sure that this chat messages widget indeed does take up as much space as it can get
           Expanded(
             child: ChatMessages(),
           ),

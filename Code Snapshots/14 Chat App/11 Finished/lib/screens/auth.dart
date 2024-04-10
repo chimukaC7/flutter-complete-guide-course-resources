@@ -55,22 +55,29 @@ class _AuthScreenState extends State<AuthScreen> {
         );
 
         //upload logic
+        //with this path created here,
+        // we can then upload the actual image that was taken to that path under that name.
         final storageRef = FirebaseStorage.instance
             .ref()
-            .child('user_images')
+            .child('user_images')//path
             .child('${userCredentials.user!.uid}.jpg');
 
         await storageRef.putFile(_selectedImage!);
+
+        //give us a URL that can be used later
+        // to display that image that was stored on Firebase,
         final imageUrl = await storageRef.getDownloadURL();
 
         await FirebaseFirestore.instance
             .collection('users')
             .doc(userCredentials.user!.uid)
-            .set({
-          'username': _enteredUsername,
-          'email': _enteredEmail,
-          'image_url': imageUrl,
-        });
+            .set(
+              {
+                'username': _enteredUsername,
+                'email': _enteredEmail,
+                'image_url': imageUrl,
+              }
+            );
       }
 
     } on FirebaseAuthException catch (error) {
