@@ -13,11 +13,27 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
   void setupPushNotifications() async {
     final fcm = FirebaseMessaging.instance;
 
+    //you should call this method first. requestPermission, as the name suggests,
+    // asks the user for permission to receive and handle push notifications.
     await fcm.requestPermission();
 
+    final token  = await fcm.getToken();
+    // yields is the address of the device on which your app is running
+    // And it's this address which you would need to target this specific device.
+
+    //So if you have push notifications, that should target individual devices by address.
+    // This here yields the address of the different devices. you could then send this address with an HTTP request
+    // to your backend and store it in a database to connect it to other metadata of your user, for example.
+
+
+    //I don't wanna target individual devices.
+    // Instead, I'd like to have like a channel to which every app installation subscribe
+    // and I want to be able to send a push notification to all subscribed devices in one step
+    // without targeting the individual addresses.
     fcm.subscribeToTopic('chat');
   }
 
@@ -66,3 +82,13 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
+/*
+*-It will basically kind of reset your Flutter project,of course, without losing your packages or your code.
+* flutter clean
+*
+* -to reinstall all those third party packages.
+* flutter pub get
+*
+* -to make sure your Android and iOS Flutterfire based configuration is up to date.
+* flutterfire configure
+* */
