@@ -50,19 +50,27 @@ class MealItem extends StatelessWidget {
               //will use another package, Flutter transparent image, which simply gives us a dummy image
               // which we can use as a placeholder
               placeholder: MemoryImage(kTransparentImage),//load images from memory.
-              image: NetworkImage(meal.imageUrl),//I wanna load the images from these URLs
+              image: NetworkImage(meal.imageUrl),//I wanna load the images from these URLs , an image fetched from the internet.
               fit: BoxFit.cover,
               height: 200,
               width: double.infinity,
             ),
+            //for positioning a widget on top of another widget inside of a Stack,
+            // Flutter gives us a another very useful widget.
             Positioned(
+              //to define how this child widget should be positioned on top of the other widget.
+              //with these coordinates, I'm making sure that this container will be added
+              // on top of the bottom of this image.
+
+              //it'll span from the very left to the very right
+              //so that it starts at the beginning of the left border of this image
+              // and it ends at the right border.
               bottom: 0,
               left: 0,
-              right: 0,
+              right: 0,//it'll span from the very left to the very right
               child: Container(
-                color: Colors.black54,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
+                color: Colors.black54,//which is a transparent black color. So it's not fully opaque. instead, it has some transparency added to it.
+                padding:  const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
                 child: Column(
                   children: [
                     Text(
