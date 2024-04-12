@@ -40,6 +40,9 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void _toggleMealFavoriteStatus(Meal meal) {
+    //we need to find out whether this meal here is already part
+    // of this list, in which case it should be removed,
+    // or if it's not part, in which case, it should be added.
     final isExisting = _favoriteMeals.contains(meal);
 
     if (isExisting) {
@@ -101,6 +104,7 @@ class _TabsScreenState extends State<TabsScreen> {
     }).toList();
 
 
+    //we can use active page which contains one of these two screens as a value for body.
     Widget? activePage = null;
     var activePageTitle =  null;
 
@@ -136,7 +140,7 @@ class _TabsScreenState extends State<TabsScreen> {
       //tabs navigation requires its own screen which then loads other screens as embedded screens, you could say.
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,//ill be triggered automatically whenever the user selects a tab.
-        currentIndex: _selectedPageIndex,
+        currentIndex: _selectedPageIndex,//tell the bottom navigation bar which tab is selected
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.set_meal),

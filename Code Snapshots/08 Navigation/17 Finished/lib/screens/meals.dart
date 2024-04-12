@@ -26,6 +26,7 @@ class MealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Widget content = Center(
       child: Column(
         //so that this column really is centered
@@ -61,7 +62,12 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
+
+
+    //conditionally use this scaffold widget
+    //becos screen is tab
     if (title == null) {
+      // once you return, any other code thereafter won't be executed.
       return content;
     }
 
