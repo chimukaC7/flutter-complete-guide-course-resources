@@ -51,6 +51,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       //   onSelectScreen: (identifier) {
       //     Navigator.of(context).pop();
       //     if (identifier == 'meals') {
+      //the push replacement method which could be used to replace the currently active screen with a new screen.
       //       Navigator.of(context).pushReplacement(
       //         MaterialPageRoute(
       //           builder: (ctx) => const TabsScreen(),
