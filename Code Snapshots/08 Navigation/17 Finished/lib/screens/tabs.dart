@@ -54,9 +54,9 @@ class _TabsScreenState extends State<TabsScreen> {
     } else {
       setState(() {
         _favoriteMeals.add(meal);
-
-        _showInfoMessage('Marked as a favorite!');
       });
+
+      _showInfoMessage('Marked as a favorite!');
     }
   }
 
@@ -67,9 +67,14 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void _setScreen(String identifier) async {
+    //if we open the drawer from this tabs screen and we then selected meals in that drawer
+    // we effectively just want to close the drawer because we already are on that meals screen
+    // or in that meals area of the app already.
     Navigator.of(context).pop();
 
     if (identifier == 'filters') {
+
+      //this will only be set once the user did navigate back.
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
           builder: (ctx) => FiltersScreen(
@@ -82,14 +87,16 @@ class _TabsScreenState extends State<TabsScreen> {
         _selectedFilters = result ?? kInitialFilters;
       });
     }
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     final availableMeals = dummyMeals.where((meal) {
         //exclue what is not
       if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
-        return false;
+        return false;//I don't want to include it, so then I'll return false.
       }
       if (_selectedFilters[Filter.lactoseFree]! && !meal.isLactoseFree) {
         return false;
@@ -100,7 +107,7 @@ class _TabsScreenState extends State<TabsScreen> {
       if (_selectedFilters[Filter.vegan]! && !meal.isVegan) {
         return false;
       }
-      return true;
+      return true;// return true for the meals that I actually wanna keep
     }).toList();
 
 

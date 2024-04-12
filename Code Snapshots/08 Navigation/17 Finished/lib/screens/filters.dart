@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:meals/screens/tabs.dart';
 // import 'package:meals/widgets/main_drawer.dart';
 
+// standardize those keys,I'll actually add a enum
 enum Filter {
   glutenFree,
   lactoseFree,
@@ -23,6 +24,8 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
+
+  //initially this could be false
   var _glutenFreeFilterSet = false;
   var _lactoseFreeFilterSet = false;
   var _vegetarianFilterSet = false;
@@ -31,6 +34,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
+    //we're going to load the data that has been set by the user in the past.
     _glutenFreeFilterSet = widget.currentFilters[Filter.glutenFree]!;
     _lactoseFreeFilterSet = widget.currentFilters[Filter.lactoseFree]!;
     _vegetarianFilterSet = widget.currentFilters[Filter.vegetarian]!;
@@ -55,18 +59,29 @@ class _FiltersScreenState extends State<FiltersScreen> {
       //     }
       //   },
       // ),
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        canPop: false,//since we are navigating back manually here, we should indeed return false so that we're not popping twice.
+        onPopInvoked: (bool didPop) {
+          //the advantage of doing so is that pop actually allows us to pass some data along with it.
+          // Some data, which will then be available in the place where we navigated to this screen,
+
+          // return here will be a map where I want to have different keys for my different filters
+          // and then true or false, depending on whether that filter has been set or not.
           Navigator.of(context).pop({
             Filter.glutenFree: _glutenFreeFilterSet,
             Filter.lactoseFree: _lactoseFreeFilterSet,
             Filter.vegetarian: _vegetarianFilterSet,
             Filter.vegan: _veganFilterSet,
           });
-          return false;
+          //so when the back button is pressed and we will then be able to access this data,
+          // this map here, from inside the tabs screen because that is where we navigated to this filters screen.
+
         },
         child: Column(
           children: [
+            //now every switch will be a 'SwitchListTile' which is a convenience widget provided by Flutter
+            //switch widget that can be tapped by the user to turn something on or off.
+            //very convenient widget for rendering. For example, setting lists as we're doing it here
             SwitchListTile(
               value: _glutenFreeFilterSet,
               onChanged: (isChecked) {
