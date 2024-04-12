@@ -27,6 +27,7 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Card(
       margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(
@@ -34,15 +35,22 @@ class MealItem extends StatelessWidget {
       ),
       clipBehavior: Clip.hardEdge,
       elevation: 2,
+      //we wanna be able to select meals from that list of meals here
+      // and then be taken to the meals detail screen.
       child: InkWell(
         onTap: () {
           onSelectMeal(meal);
         },
+        //rendering a widget directly above each other
         child: Stack(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
+            //we then add all the widgets that should be Positioned on top of each other,
+            // starting with the one that's on the bottom of the Stack.So that's in the background, so to say.
+            FadeInImage(// simply a utility widget that displays an image that's being faded in
+              //will use another package, Flutter transparent image, which simply gives us a dummy image
+              // which we can use as a placeholder
+              placeholder: MemoryImage(kTransparentImage),//load images from memory.
+              image: NetworkImage(meal.imageUrl),//I wanna load the images from these URLs
               fit: BoxFit.cover,
               height: 200,
               width: double.infinity,

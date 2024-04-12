@@ -5,12 +5,11 @@ import 'package:meals/screens/meal_details.dart';
 import 'package:meals/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-
   final String? title;
   final List<Meal> meals;
   final void Function(Meal meal) onToggleFavorite;
 
-const MealsScreen({
+  const MealsScreen({
     super.key,
     this.title,
     required this.meals,
@@ -18,7 +17,6 @@ const MealsScreen({
   });
 
   void selectMeal(BuildContext context, Meal meal) {
-
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealDetailsScreen(
@@ -27,13 +25,14 @@ const MealsScreen({
         ),
       ),
     );
-
   }
 
   @override
   Widget build(BuildContext context) {
     Widget content = Center(
       child: Column(
+        //so that this column really is centered
+        // and is not unconstrained vertically.
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
@@ -42,7 +41,7 @@ const MealsScreen({
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 16), //for spacing
           Text(
             'Try selecting a different category!',
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
