@@ -100,32 +100,42 @@ class _TabsScreenState extends State<TabsScreen> {
       return true;
     }).toList();
 
-    Widget activePage = CategoriesScreen(
-      onToggleFavorite: _toggleMealFavoriteStatus,
-      availableMeals: availableMeals,
-    );
 
-    var activePageTitle = 'Categories';
+    Widget? activePage = null;
+    var activePageTitle =  null;
+
+    if(_selectedPageIndex == 0){
+       activePage = CategoriesScreen( onToggleFavorite: _toggleMealFavoriteStatus, availableMeals: availableMeals,);
+
+       activePageTitle = 'Categories';
+    }
+
 
     if (_selectedPageIndex == 1) {
-      activePage = MealsScreen(
-        meals: _favoriteMeals,
-        onToggleFavorite: _toggleMealFavoriteStatus,
-      );
+      activePage = MealsScreen( meals: _favoriteMeals,  onToggleFavorite: _toggleMealFavoriteStatus,  );
 
       activePageTitle = 'Your Favorites';
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(activePageTitle),
+        title: Text(activePageTitle),//the text that is displayed as a title should depend on which tab is selected.
       ),
       drawer: MainDrawer(
         onSelectScreen: _setScreen,
       ),
+      //this also will need to be set dynamically because that will be the active screen
+      // which will depend on which tab is selected.
       body: activePage,
+
+      //it's time to add a never very important navigation pattern to this app.
+      // A pattern which you will likely need in many of the apps you're going to build in the future.
+      // And that pattern would be tab based navigation, having a tab bar at the bottom
+      // which can be used to switch between different screens.
+
+      //tabs navigation requires its own screen which then loads other screens as embedded screens, you could say.
       bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectPage,
+        onTap: _selectPage,//ill be triggered automatically whenever the user selects a tab.
         currentIndex: _selectedPageIndex,
         items: const [
           BottomNavigationBarItem(

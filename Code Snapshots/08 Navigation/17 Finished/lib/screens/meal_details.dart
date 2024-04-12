@@ -29,28 +29,26 @@ class MealDetailsScreen extends StatelessWidget {
               Image.network(
                 meal.imageUrl,
                 height: 300,
-                width: double.infinity,
-                fit: BoxFit.cover,
+                width: double.infinity,//to make sure that we take all the available space,
+                fit: BoxFit.cover,//to make sure that we take all the available space,
               ),
               const SizedBox(height: 14),
-              Text(
-                'Ingredients',
+              Text('Ingredients',
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
               ),
               const SizedBox(height: 14),
+              //we can create a for loop to loop through all the ingredients
               for (final ingredient in meal.ingredients)
-                Text(
-                  ingredient,
+                Text(ingredient,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Theme.of(context).colorScheme.onBackground,
                       ),
                 ),
               const SizedBox(height: 24),
-              Text(
-                'Steps',
+              Text('Steps',
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,
@@ -63,8 +61,7 @@ class MealDetailsScreen extends StatelessWidget {
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  child: Text(
-                    step,
+                  child: Text(step,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Theme.of(context).colorScheme.onBackground,
