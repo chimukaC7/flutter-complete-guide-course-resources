@@ -48,16 +48,20 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   Widget build(BuildContext context) {
     final availableMeals = ref.watch(filteredMealsProvider);
 
-    Widget activePage = CategoriesScreen(
-      availableMeals: availableMeals,
-    );
-    var activePageTitle = 'Categories';
+    Widget? activePage = null;
+    var activePageTitle = null;
+
+    if(_selectedPageIndex == 0){
+      activePage = CategoriesScreen(availableMeals: availableMeals,);
+      activePageTitle = 'Categories';
+    }
 
     if (_selectedPageIndex == 1) {
+      //it's here where we actually wanna reach out to our favoriteMealsProvider
+      // to get those favoriteMeals to pass them to the MealsScreen.
       final favoriteMeals = ref.watch(favoriteMealsProvider);
-      activePage = MealsScreen(
-        meals: favoriteMeals,
-      );
+
+      activePage = MealsScreen(meals: favoriteMeals,);
       activePageTitle = 'Your Favorites';
     }
 

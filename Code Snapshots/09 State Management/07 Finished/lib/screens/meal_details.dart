@@ -13,7 +13,17 @@ class MealDetailsScreen extends ConsumerWidget {
   final Meal meal;
 
   @override
+  //the build method here has to change because here we now get a second argument,
+  // a second parameter passed in automatically by riverpod.
+  //which is this ref thing which we need for listening to providers.
+  //
+  // We did not have to adjust the build method in the tabs.dart file because there we had a state class
+  // and we replaced that with ConsumerState,which made this ref property globally available in this class.
+  //Here for the stateless widget, it's different. We don't have such a general ref property.
+  // Instead, we have to add it here as a parameter to the build method.
+  //But with it added here, we can now use it to call methods from our notifier that is exposed through the provider.
   Widget build(BuildContext context, WidgetRef ref) {
+
     final favoriteMeals = ref.watch(favoriteMealsProvider);
 
     final isFavorite = favoriteMeals.contains(meal);
@@ -22,14 +32,18 @@ class MealDetailsScreen extends ConsumerWidget {
         appBar: AppBar(title: Text(meal.title), actions: [
           IconButton(
             onPressed: () {
+              //so in a function that is passed as a value to onPressed or something similar,
+              // you should not use watch but instead read to not set up an ongoing listener
+              // because inside of such a function that would be problematic
+              // but instead to just read a value once.
               final wasAdded = ref
                   .read(favoriteMealsProvider.notifier)
                   .toggleMealFavoriteStatus(meal);
+
               ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(
-                      wasAdded ? 'Meal added as a favorite.' : 'Meal removed.'),
+                  content: Text(wasAdded ? 'Meal added as a favorite.' : 'Meal removed.'),
                 ),
               );
             },

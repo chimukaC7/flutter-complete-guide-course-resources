@@ -25,14 +25,12 @@ class FiltersScreen extends ConsumerWidget {
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.glutenFree, isChecked);
             },
-            title: Text(
-              'Gluten-free',
+            title: Text('Gluten-free',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
-            subtitle: Text(
-              'Only include gluten-free meals.',
+            subtitle: Text('Only include gluten-free meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -47,14 +45,12 @@ class FiltersScreen extends ConsumerWidget {
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.lactoseFree, isChecked);
             },
-            title: Text(
-              'Lactose-free',
+            title: Text('Lactose-free',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
-            subtitle: Text(
-              'Only include lactose-free meals.',
+            subtitle: Text('Only include lactose-free meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -69,14 +65,12 @@ class FiltersScreen extends ConsumerWidget {
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.vegetarian, isChecked);
             },
-            title: Text(
-              'Vegetarian',
+            title: Text('Vegetarian',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
-            subtitle: Text(
-              'Only include vegetarian meals.',
+            subtitle: Text('Only include vegetarian meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
@@ -91,14 +85,12 @@ class FiltersScreen extends ConsumerWidget {
                   .read(filtersProvider.notifier)
                   .setFilter(Filter.vegan, isChecked);
             },
-            title: Text(
-              'Vegan',
+            title: Text('Vegan',
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
             ),
-            subtitle: Text(
-              'Only include vegan meals.',
+            subtitle: Text('Only include vegan meals.',
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                   ),
